@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+    emqttd_server:
+        container_name: emqttd_container
+        image: registry.cn-hangzhou.aliyuncs.com/synbop/emqttd:2.3.6
+        ports:
+            - 18083:18083
+            - 8883:8883
+            - 8084:8084
+            - 1883:1883
+        volumes:
+            - /etc/localtime:/etc/localtime
