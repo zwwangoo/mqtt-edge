@@ -3113,3 +3113,34 @@
 2019-08-05 19:34:39,452 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:87] - INFO: 1564976079 cloud命令stop 停止推流
 2019-08-05 19:34:44,457 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:63] - INFO: e_edge on_message
 2019-08-05 19:34:44,457 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:87] - INFO: 1564976084 cloud命令stop 停止推流
+2019-08-06 10:54:22,162 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:56:27,267 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:57:07,479 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:57:38,106 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:57:43,190 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:58:14,277 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:58:54,619 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 10:59:07,418 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 11:01:45,941 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 11:01:59,911 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:10:42,499 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:59] - INFO: e_edge on_connect 0
+2019-08-06 11:11:06,093 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:06,094 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:62] - INFO: cloud on_message
+2019-08-06 11:11:06,094 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:64] - INFO: {'term_sn': '192.168.1.0', 'sign': 'f8732aed21edb387d5535cddda5b5cab', 'time': 1565032242}
+2019-08-06 11:11:06,099 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:63] - INFO: e_edge on_message
+2019-08-06 11:11:06,100 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:76] - INFO: 更新配置config
+2019-08-06 11:11:14,270 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:15,273 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:16,276 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:17,278 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:18,281 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:19,283 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:20,287 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:21,290 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:22,294 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:23,296 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:24,300 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:25,301 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:26,304 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:27,309 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
+2019-08-06 11:11:28,310 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:57] - INFO: on_connect 0
