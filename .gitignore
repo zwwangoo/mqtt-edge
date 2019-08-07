@@ -11,6 +11,7 @@ instance/*
 .tox/
 .coverage*
 *.log*
+mqtt_edge/logger/*.txt
 !.coveragerc
 htmlcov/
 build

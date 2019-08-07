@@ -1,0 +1,81 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Flask-MQTT example{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+	pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+  $(document).ready(function() {
+
+	namespace = '/edge';
+	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+
+	socket.on('message', function(res){
+		alert(res.data)
+	})
+	socket.on('edge_log', function(res) {
+		var t = res.data + '\n' + $("#edge_log").text();
+		$("#edge_log").html(t);
+	});
+
+	socket.on('cloud_log', function(res) {
+		var t = res.data + '\n' + $("#cloud_log").text();
+		$("#cloud_log").text(t);
+	});
+
+
+	$('#edge_create').click(function(event) {
+	  var client_id = $('#term_sn').val()
+	  socket.emit('edge_client', data=client_id);
+	});
+
+	$('#cloud_start').click(function(event) {
+	  socket.emit('cloud_start');
+	});
+
+	$('#edge_register').click(function(event) {
+	  var client_id = $('#term_sn').val()
+	  socket.emit('edge_register', data={'term_sn': client_id});
+	});
+	$('#cloud_cmd').click(function(event) {
+	  var client_id = $('#term_sn').val()
+	  socket.emit('cloud_cmd', client_id);
+	});
+  });
+</script>
+{% endblock %}
+
+
+{% block content %}
+<div style='width: 80%;margin: 0 auto;'>
+<div class="col-md-12 column">
+	<div class="form-group">
+	  <label for="term_sn"> term_sn: </label>
+	  <input type="text" class="form-control" id="term_sn">
+    </div>
+	<button id="edge_create" class="btn btn-primary">edge Create</button>
+	<button id="cloud_start" class="btn btn-primary">Cloud start</button>
+	<button id="edge_register" class="btn btn-primary">edge register</button>
+	<button id="cloud_cmd" class="btn btn-primary">cloud cmd</button>
+</div>
+	<div class="col-md-6 column">
+		edge log:
+		<pre id='edge_log'></pre>
+	</div>
+	<div class="col-md-6 column">
+		cloud log:
+		<pre id='cloud_log'></pre>
+	</div>
+</div>
+{% endblock %}

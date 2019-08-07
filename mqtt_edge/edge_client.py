@@ -6,16 +6,19 @@ from mqtt_base import MQTTClient
 from utils.data_utils import generate_md5, ordered_dict, get_utctime
 from utils.sql_utils import SqlUtil
 from logger import log
+from flask_socketio import emit
 
 
 class EdgeClient(MQTTClient):
     """ 边缘网关设备mqtt客户端
     """
 
-    def __init__(self, host, port, sqlite_path):
-        super(EdgeClient, self).__init__(host, port, sqlite_path)
+    def __init__(self, host, port,
+                 term_sn=None, config=None, sqlite_path=None):
+        super(EdgeClient, self).__init__(
+            host, port, term_sn, config, sqlite_path)
 
-    def publish(self, topic, qos=1):
+    def publish(self, topic, data=None, qos=1):
         """ 发布消息
         """
 
@@ -28,6 +31,8 @@ class EdgeClient(MQTTClient):
         }
 
         (rc, final_mid) = self.client.publish(topic, json.dumps(data), qos=qos)
+        emit('edge_log', {'data': json.dumps(data)}, namespace='/edge')
+        return rc, final_mid
 
     def run(self):
         """ 边缘设备启动loop和向云端发布注册信息
@@ -66,6 +71,12 @@ class EdgeClient(MQTTClient):
         cmd = payload.get('cmd')
         cmd_type = payload.get('type')
         msg_time = payload.get('time')
+
+        socketio, skip_sid = userdata
+        socketio.emit(
+            'edge_log', {'data': cmd_type},
+            namespace='/edge', broadcast=True, skip_sid=skip_sid)
+
         if cmd == 'config':
             if cmd_type == 'overwrite':
                 self.config = {

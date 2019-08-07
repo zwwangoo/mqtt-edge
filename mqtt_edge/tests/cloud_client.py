@@ -6,7 +6,10 @@ import time
 
 from paho.mqtt.client import Client
 from utils.data_utils import generate_md5, ordered_dict, get_utctime
+
 from logger import log
+# from extensions import socketio
+from flask_socketio import emit
 
 config = {
     "ml": [{
@@ -38,9 +41,14 @@ class CloudClient:
         self.client.username_pw_set(user, password)
         try:
             self.client.connect(self.host, self.port, self.keepalive)
+
+            emit('cloud_log', {'data': 'cloud connected'})
         except ConnectionRefusedError as e:
             log.error(e)
             log.info('Retry after 1 second.')
+
+            emit('cloud_log', {
+                 'data': 'ConnectionResetError, Retry after 1 second.'})
             time.sleep(1)
             self.connect(user, password)
 
@@ -61,13 +69,17 @@ class CloudClient:
     def _on_message(self, client, userdata, msg):
         log.info('cloud on_message')
         payload = json.loads(msg.payload.decode())
-        log.info(payload)
+
         self.term_sn = payload.get('term_sn')
         self.publish('video/edgeipcmr/' + self.term_sn,
                      self.get_response(msg.topic, payload))
+        socketio, skip_sid = userdata
+        socketio.emit('cloud_log', {'data': self.term_sn},
+                      namespace='/edge', broadcast=True, skip_id=skip_sid)
 
     def publish(self, topic, data):
         (rc, final_mid) = self.client.publish(topic, json.dumps(data), qos=1)
+        return rc, final_mid
 
     def disconnects(self):
         self.client.disconnect()
@@ -84,7 +96,7 @@ class CloudClient:
             "time": get_utctime(),
             "cmd": "config"
         }
-        if term_sn not in ['192.168.1.0', '192.168.212.0']:
+        if term_sn not in ['MG51T-09-S05-1200', 'MG51T-09-S05-1211']:
             data['type'] = 'ban'
         else:
             now_sign = generate_md5(ordered_dict(config))
@@ -106,7 +118,7 @@ class CloudClient:
                 data['type'] = 'ok'
         return data
 
-    def tr_stram_cmd(self):
+    def tr_stram_cmd(self, term_sn):
         data = {
             "time": get_utctime(),
             "data": [
@@ -116,5 +128,7 @@ class CloudClient:
             "type": "stop",
             "cmd": "rt_stream"
         }
-        self.term_sn = '192.168.1.0'
-        self.publish('video/edgeipcmr/' + self.term_sn, data)
+        self.publish('video/edgeipcmr/' + term_sn, data)
+
+        emit('cloud_log', {'data': 'data:' +
+                           json.dumps(data)}, namespace='/edge')
