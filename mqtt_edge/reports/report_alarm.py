@@ -1,6 +1,5 @@
 from utils.data_utils import get_utctime
 
-from config import config as Config
 from . import EdgeReport
 
 
@@ -29,9 +28,3 @@ class EdgeAlarm(EdgeReport):
             "type": "alarm",
             "cmd": "report"
         }
-
-
-def run():
-    alarm = EdgeAlarm(Config.HOST, Config.PORT, Config.SQLITE_PATH)
-    alarm.connect()
-    alarm.publish()

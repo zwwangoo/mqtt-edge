@@ -1,4 +1,3 @@
-import time
 import json
 from paho.mqtt.client import Client
 from flask_socketio import emit
@@ -11,7 +10,7 @@ class MQTTClient:
     """ mqtt客户端的父类
     """
 
-    def __init__(self, host, port, sqlite_path,
+    def __init__(self, host, port, sqlite_path=None,
                  term_sn=None,
                  config=None,
                  keepalive=60):
@@ -50,18 +49,16 @@ class MQTTClient:
             assert rc == 0, ConnectionRefusedError
             self.connected = True
 
-            emit('edge_log', {
-                 'data': '{} edge connected.'.format(self.term_sn)})
-
         except ConnectionRefusedError:
             log.error('Retry after 1 second.')
 
             emit('edge_log', {
-                 'data': 'ConnectionResetError, Retry after 1 second.'})
-
-            time.sleep(1)
-            self.connect(user, password)
+                 'data': 'ConnectionResetError'})
         return rc
+
+    def disconnect(self):
+        self.connected = False
+        self.client.disconnect()
 
     def loop(self, timeout=None):
         if timeout:

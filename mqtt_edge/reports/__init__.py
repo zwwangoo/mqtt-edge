@@ -4,8 +4,11 @@ from edge_client import EdgeClient
 
 class EdgeReport(EdgeClient):
 
-    def __init__(self, host, port, sqlite_path):
-        super(EdgeReport, self).__init__(host, port, sqlite_path)
+    def __init__(self, host, port,
+                 sqlite_path=None, term_sn=None, config=None):
+        super(EdgeReport, self).__init__(host, port,
+                                         sqlite_path=sqlite_path,
+                                         term_sn=term_sn, config=config)
 
     def publish(self):
         data = self.report_msg()
