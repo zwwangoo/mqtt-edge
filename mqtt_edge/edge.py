@@ -1,24 +1,19 @@
 from flask import Blueprint, render_template, request
-from edge_client import EdgeClient
-from reports.report_ai_event import EdgeAIEvent
+from clients.edge_client import EdgeClient
+from utils.data_utils import get_utctime
 
 from config import config
 
 edge_bp = Blueprint('edge', __name__, url_prefix='/edge')
 
-EDGEALL = {}
-
-
-@edge_bp.route('/')
-def index():
-    return render_template('edge.html')
+EDGESALL = {}
 
 
 @edge_bp.route('/term_sn', methods=['GET', 'POST'])
 def edge():
 
     term_sn = request.form.get('term_sn')
-    client = EDGEALL.get(term_sn, None)
+    client = EDGESALL.get(term_sn, None)
     if request.method == 'GET':
         if client and client.connected:
             return '%s' % term_sn
@@ -34,7 +29,7 @@ def edge():
                                 term_sn=term_sn,
                                 sqlite_path=config.SQLITE_PATH,
                                 config=term_config)
-            EDGEALL[term_sn] = client
+            EDGESALL[term_sn] = client
 
         if not client.connected:
             client.connect(user, password)
@@ -45,21 +40,27 @@ def edge():
 @edge_bp.route('/register', methods=['POST'])
 def edge_register():
     term_sn = request.form.get('term_sn')
-    client = EDGEALL.get(term_sn)
+    client = EDGESALL.get(term_sn)
     if not client:
         return '%s dose not exist.'
-    print(EDGEALL)
-
-    client.publish('video/cloudipcmgr/register')
+    client.publish_register()
     return 'successed.'
 
 
 @edge_bp.route('/report', methods=['POST'])
-def edge_cloud_report():
+def edge_report():
     term_sn = request.form.get('term_sn')
-    client = EdgeAIEvent(config.HOST, config.PORT,
-                         term_sn=term_sn,
-                         sqlite_path=config.SQLITE_PATH)
-    client.connect()
-    client.publish()
+    client = EDGESALL.get(term_sn)
+    if client and client.connected:
+        client.publish_report(data={
+            "time": get_utctime(),
+            "term_sn": term_sn,
+            "data": {
+                "type": "motion",
+                "event": "start",
+                "timestamp": 1564140943,
+            },
+            "type": "ai_event",
+            "cmd": "report"
+        })
     return 'report ok'

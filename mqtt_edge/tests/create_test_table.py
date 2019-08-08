@@ -28,4 +28,4 @@ def create_db(db_path, term_sn, config):
 
 
 if __name__ == '__main__':
-    create_db('./sqlite.db', '192.168.1.0', config)
+    create_db('./sqlite.db', 'MG51T-09-S05-1200', config)

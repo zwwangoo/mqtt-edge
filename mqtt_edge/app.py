@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from extensions import socketio, bootstrap, db
 
@@ -21,11 +21,22 @@ def create_app():
     bootstrap.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(edge_bp)
-    app.register_blueprint(cloud_bp)
+    register_blueprint(app)
     return app
 
 
+def register_blueprint(app):
+    app.register_blueprint(edge_bp)
+    app.register_blueprint(cloud_bp)
+
+
+app = create_app()
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 if __name__ == '__main__':
-    app = create_app()
     socketio.run(app, host='0.0.0.0', port=5000, use_reloader=True, debug=True)

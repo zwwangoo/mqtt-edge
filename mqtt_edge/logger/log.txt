@@ -3619,3 +3619,95 @@
 2019-08-08 16:27:35,097 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
 2019-08-08 16:27:35,097 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:73] - INFO: report successed
 2019-08-08 16:27:36,097 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:44] - INFO: e_edge on_connect 0
+2019-08-08 16:55:55,582 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:50] - INFO: e_edge on_connect 0
+2019-08-08 16:55:56,389 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:48] - INFO: on_connect 0
+2019-08-08 16:55:58,666 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:56:15,466 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:56:20,489 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:56:20,489 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:72] - INFO: report successed
+2019-08-08 16:56:20,493 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:54] - INFO: e_edge on_message
+2019-08-08 16:59:19,974 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:52] - INFO: e_edge on_connect 0
+2019-08-08 16:59:20,868 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:48] - INFO: on_connect 0
+2019-08-08 16:59:22,228 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:59:22,253 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:56] - INFO: e_edge on_message
+2019-08-08 16:59:22,254 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:70] - INFO: 更新配置config
+2019-08-08 16:59:24,957 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:59:24,962 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:56] - INFO: e_edge on_message
+2019-08-08 16:59:24,963 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:72] - INFO: 注册成功
+2019-08-08 16:59:27,028 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:53] - INFO: cloud on_message
+2019-08-08 16:59:27,028 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/tests/cloud_client.py[line:72] - INFO: report successed
+2019-08-08 16:59:27,031 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:56] - INFO: e_edge on_message
+2019-08-08 17:20:57,006 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:21:01,686 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/cloud_client.py[line:23] - INFO: on_connect 0
+2019-08-08 17:21:14,637 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:21:14,663 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:21:14,664 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:21:17,890 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:21:17,895 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:21:17,896 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:83] - INFO: 注册成功
+2019-08-08 17:21:31,420 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:21:31,420 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:90] - INFO: 1565227291 cloud命令stop 停止推流
+2019-08-08 17:21:36,484 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:21:36,485 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/cloud_client.py[line:39] - INFO: report successed
+2019-08-08 17:21:36,487 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:25:49,133 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:25:53,193 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:23] - INFO: on_connect 0
+2019-08-08 17:25:56,049 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:25:56,061 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:25:56,061 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:25:58,074 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:25:58,084 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:25:58,084 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:83] - INFO: 注册成功
+2019-08-08 17:26:01,347 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:26:01,349 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:39] - INFO: report successed
+2019-08-08 17:26:01,351 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:08,580 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:08,581 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:90] - INFO: 1565227568 cloud命令stop 停止推流
+2019-08-08 17:26:20,438 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:26:21,706 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:26:21,712 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:21,731 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:26:27,216 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:26:29,512 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:26:29,518 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:29,519 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:85] - INFO: 非登记设备
+2019-08-08 17:26:47,135 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:26:47,141 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:47,154 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:26:49,744 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:26:49,751 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:26:49,751 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:83] - INFO: 注册成功
+2019-08-08 17:27:02,465 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:27:02,465 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:39] - INFO: report successed
+2019-08-08 17:27:02,471 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:27:06,512 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:27:06,513 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:90] - INFO: 1565227626 cloud命令stop 停止推流
+2019-08-08 17:32:47,809 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:32:48,940 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:23] - INFO: on_connect 0
+2019-08-08 17:32:52,136 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:32:52,162 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:32:52,163 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:32:54,680 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:32:54,687 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:32:54,687 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:83] - INFO: 注册成功
+2019-08-08 17:33:02,362 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:33:02,363 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:39] - INFO: report successed
+2019-08-08 17:33:02,366 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:33:14,219 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:33:14,221 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:90] - INFO: 1565227994 cloud命令stop 停止推流
+2019-08-08 17:33:24,084 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:33:24,090 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:33:24,091 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:85] - INFO: 非登记设备
+2019-08-08 17:35:20,822 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:63] - INFO: e_edge on_connect 0
+2019-08-08 17:35:21,706 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:23] - INFO: on_connect 0
+2019-08-08 17:35:23,346 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:35:23,373 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:35:23,374 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:85] - INFO: 非登记设备
+2019-08-08 17:35:35,404 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:35:35,412 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:35:35,414 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:81] - INFO: 更新配置config
+2019-08-08 17:35:40,477 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:28] - INFO: cloud on_message
+2019-08-08 17:35:40,478 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/cloud_client.py[line:39] - INFO: 事件上报
+2019-08-08 17:35:40,481 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:35:49,983 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:67] - INFO: e_edge on_message
+2019-08-08 17:35:49,983 - /home/wen/projects/ilab/mqtt-edge/mqtt_edge/clients/edge_client.py[line:90] - INFO: 1565228149 cloud命令stop 停止推流

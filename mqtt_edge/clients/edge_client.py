@@ -1,6 +1,6 @@
 import json
 
-from mqtt_base import MQTTClient
+from . import MQTTClient
 from utils.data_utils import generate_md5, ordered_dict, get_utctime
 from utils.sql_utils import SqlUtil
 from logger import log
@@ -12,14 +12,19 @@ class EdgeClient(MQTTClient):
 
     def __init__(self, host, port,
                  term_sn=None, config=None, sqlite_path=None):
-        super(EdgeClient, self).__init__(
-            host, port, term_sn=term_sn,
-            config=config, sqlite_path=sqlite_path)
 
-    def publish(self, topic, data=None, qos=1):
-        """ 发布消息
-        """
+        self.sqlite_path = sqlite_path
+        if not term_sn:
+            self.term_sn, self.config = self.read_config()
+        else:
+            self.term_sn = term_sn
+            self.config = config
 
+        super(EdgeClient, self).__init__(host, port, client_id=term_sn)
+
+    def publish_register(self,
+                         topic='video/cloudipcmgr/register',
+                         data=None, qos=1):
         ordered = ordered_dict(self.config)
         md5_ordered = generate_md5(ordered)
         data = {
@@ -27,9 +32,23 @@ class EdgeClient(MQTTClient):
             'sign': md5_ordered,
             'time': get_utctime()
         }
+        return self.publish(topic, data, qos)
 
-        (rc, final_mid) = self.client.publish(topic, json.dumps(data), qos=qos)
-        return rc, final_mid
+    def publish_report(self,
+                       topic='video/cloudipcmgr/report',
+                       data=None, qos=1):
+        return self.publish(topic, data, qos)
+
+    def read_config(self):
+        """
+        读取配置
+        """
+        sql_util = SqlUtil(self.sqlite_path)
+        sql_util.connect()
+        sql_util.read_config()
+        sql_util.close()
+
+        return sql_util.term_sn, json.loads(sql_util.config)
 
     def set_config(self, config):
         """ 更新配置
