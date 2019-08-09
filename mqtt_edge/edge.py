@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, request
 from clients.edge_client import EdgeClient
 from utils.data_utils import get_utctime
-
-from config import config
+from utils.sql_utils import fetchone
 
 edge_bp = Blueprint('edge', __name__, url_prefix='/edge')
 
@@ -25,6 +24,17 @@ def edge():
         term_config = request.form.get('term_config')
 
         if not client:
+            config = fetchone(
+                '''
+                select
+                    broker_host host,
+                    broker_port port,
+                    sqlite_path SQLITE_PATH
+                from config
+                ''')
+            if not config:
+                return 'error, Not configured'
+            print(config.HOST)
             client = EdgeClient(config.HOST, config.PORT,
                                 term_sn=term_sn,
                                 sqlite_path=config.SQLITE_PATH,
@@ -44,7 +54,7 @@ def edge_register():
     if not client:
         return '%s dose not exist.'
     client.publish_register()
-    return 'successed.'
+    return 'Succeeded.'
 
 
 @edge_bp.route('/report', methods=['POST'])

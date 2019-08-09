@@ -6,24 +6,37 @@ from extensions import db
 from clients.cloud_client import CloudClient
 from utils.sql_utils import fetchone
 from logger import log
-from config import config
 
 cloud_bp = Blueprint('cloud', __name__, url_prefix='/cloud')
 
-cloud = CloudClient(config.HOST, config.PORT)
+CLOUD = {}
 
 
 @cloud_bp.route('/client', methods=['GET', 'DELETE'])
 def cloud_server():
+    client = CLOUD.get('cloud')
     if request.method == 'GET':
         user = request.form.get('user', 'admin')
         password = request.form.get('password', 'password')
-        if not cloud.connected:
-            cloud.connect(user, password)
-            cloud.loop_start()
+        if not client:
+            config = fetchone(
+                '''
+                select
+                    broker_host host,
+                    broker_port port,
+                    sqlite_path SQLITE_PATH
+                from config
+                ''')
+            if not config:
+                return 'error, Not configured'
+            client = CloudClient(config.HOST, config.PORT)
+            CLOUD['cloud'] = client
+        if not client.connected:
+            client.connect(user, password)
+            client.loop_start()
         return 'cloud connected'
     else:
-        cloud.disconnect()
+        client.disconnect()
         return 'cloud disconnect'
 
 
@@ -61,5 +74,6 @@ def cloud_term_sn():
 @cloud_bp.route('/cmd', methods=['POST'])
 def cloud_cmd():
     term_sn = request.form.get('term_sn')
+    cloud = CLOUD.get('cloud')
     cloud.publish_cmd(term_sn)
     return 'cmd success'

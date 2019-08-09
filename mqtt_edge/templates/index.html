@@ -17,6 +17,19 @@
 <script type="text/javascript" charset="utf-8">
 
   $(document).ready(function() {
+	  $('#config').click(function(event){
+		  var host = $('#host').val()
+		  var port = $('#port').val()
+		  var sqlite = $('#sqlite').val()
+		  if (host === '' || port === '' || sqlite === '') {
+			  alert('基础设置不能为空');
+			  return
+		  }
+		  $.post('/config', {'host': host, 'port': port, 'sqlite': sqlite}, function(res){
+			  alert(res);
+			  return
+		  })
+	  })
   
     $('#edge_create').click(function(event){
       var term_sn = $('#term_sn').val()
@@ -88,6 +101,28 @@
 
 {% block content %}
 <div style='width: 80%;margin: 10px auto;'>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+		  基础设置
+      </h3>
+    </div>
+    <div class="panel-body">
+	    <div class='form-inline'>
+		  <div class="form-group">
+			<label for="host"> Broker Host: </label>
+			<input type="text" class="form-control" id="host">
+			<label for="port"> Broker Port: </label>
+			<input type="text" class="form-control" id="port">
+			<label for="sqlite"> edge SQLite </label>
+			<input type="text" class="form-control" id="sqlite">
+		  </div>
+		  <div class="form-group">
+			<button id="config" class="btn btn-primary">设置</button>
+		  </div>
+		</div>
+    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
