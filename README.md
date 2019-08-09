@@ -25,8 +25,6 @@ pip install -r requirements.txt
 	- log.txt  日志文件
   - templates  静态网页
 	- index.html
-  - tests  本地开发的一些测试支持
-	- create_test_table.py  创建测试用的数据库
   - utils  一些工具函数
     - dadta_utils.py  对数据进行处理的工具函数
 	- sql_utils.py  对sqlite执行的封装工具
@@ -35,6 +33,9 @@ pip install -r requirements.txt
   - edge.py  edge web 接口
   - extensions.py  flask 使用的第三方库
   - sqlite.db  边缘设备的数据库
+- scripts  本地开发的一些测试支持
+  - create_test_table.py  创建测试用的edge数据库
+  - cloud_db.sql  模拟云端mysql 表结构和数据
 - docker-compose.yml
 - Dockerfile
 - requirements.txt
