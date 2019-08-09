@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from sqlalchemy import text
 from sqlalchemy.exc import DatabaseError
 
-from extensions import socketio, bootstrap, db
+from extensions import bootstrap, db
 from utils.sql_utils import fetchone
 from logger import log
 
@@ -23,7 +23,6 @@ def create_app():
 
     app.config.from_pyfile('config.py')
 
-    socketio.init_app(app, async_mode=None)
     bootstrap.init_app(app)
     db.init_app(app)
 
@@ -69,4 +68,4 @@ def set_config():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, use_reloader=True, debug=True)
+    app.run(host='0.0.0.0', port=5000, use_reloader=True, debug=True)
