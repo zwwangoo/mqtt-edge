@@ -17,3 +17,4 @@ htmlcov/
 build
 dist
 .idea/
+mqtt_edge/sqlite.db
