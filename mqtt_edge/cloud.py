@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request, Response
 from sqlalchemy import text
 from sqlalchemy.exc import DatabaseError
@@ -77,3 +78,23 @@ def cloud_cmd():
     cloud = CLOUD.get('cloud')
     cloud.publish_cmd(term_sn)
     return 'cmd success'
+
+
+@cloud_bp.route('/publish', methods=['POST'])
+def edge_publish():
+    topic = request.form.get('topic')
+    message = request.form.get('message')
+    qos = int(request.form.get('qos'))
+    client = CLOUD.get('cloud')
+
+    try:
+        data = json.loads(message)
+    except json.decoder.JSONDecodeError as e:
+        print(e)
+        return 'message error'
+
+    if client and client.connected:
+        rc, mid = client.publish(topic, data, qos)
+        if rc == 0:
+            return 'publish succeeded.'
+    return 'publish error.'

@@ -116,5 +116,4 @@ def fetchone(sql, params={}):
     获取一个SQL执行结果
     """
     result = db.session.execute(sql, params).fetchone()
-    print(result)
     return row_format(result)

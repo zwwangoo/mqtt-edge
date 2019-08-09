@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request
 from clients.edge_client import EdgeClient
 from utils.data_utils import get_utctime
@@ -57,20 +58,22 @@ def edge_register():
     return 'Succeeded.'
 
 
-@edge_bp.route('/report', methods=['POST'])
-def edge_report():
+@edge_bp.route('/publish', methods=['POST'])
+def edge_publish():
     term_sn = request.form.get('term_sn')
+    topic = request.form.get('topic')
+    message = request.form.get('message')
+    qos = int(request.form.get('qos'))
     client = EDGESALL.get(term_sn)
+
+    try:
+        data = json.loads(message)
+    except json.decoder.JSONDecodeError as e:
+        print(e)
+        return 'message error'
+
     if client and client.connected:
-        client.publish_report(data={
-            "time": get_utctime(),
-            "term_sn": term_sn,
-            "data": {
-                "type": "motion",
-                "event": "start",
-                "timestamp": 1564140943,
-            },
-            "type": "ai_event",
-            "cmd": "report"
-        })
-    return 'report ok'
+        rc, mid = client.publish(topic, data, qos)
+        if rc == 0:
+            return 'publish succeeded.'
+    return 'publish error.'
