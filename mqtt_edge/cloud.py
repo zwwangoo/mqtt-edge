@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request, Response
 from sqlalchemy import text
 from sqlalchemy.exc import DatabaseError
@@ -5,7 +6,7 @@ from sqlalchemy.exc import DatabaseError
 from extensions import db
 from clients.cloud_client import CloudClient
 from utils.sql_utils import fetchone
-from utils.data_utils import str_to_dict
+from utils.data_utils import isdict
 from logger import log
 
 cloud_bp = Blueprint('cloud', __name__, url_prefix='/cloud')
@@ -46,9 +47,13 @@ def cloud_term_sn():
     term_sn = request.form.get('term_sn')
     term_config = request.form.get('config')
 
-    term_config, rc = str_to_dict(term_config)
-    if rc != 1:
-        return 'term_config error'
+    if request.method == 'DELETE':
+        sql = text('delete from edge where term_sn=:term_sn')
+        params = {'term_sn': term_sn}
+    else:
+        if not isdict(term_config):
+            return 'term_config error'
+
     if request.method == 'GET':
         edge = fetchone(
             text('select term_sn, config from edge where term_sn=:term_sn'),
@@ -63,11 +68,9 @@ def cloud_term_sn():
             'update edge set config=:config where term_sn=:term_sn'
         ),
         params = {'config': term_config, 'term_sn': term_sn}
-    else:
-        sql = text('delete from edge where term_sn=:term_sn')
-        params = {'term_sn': term_sn}
 
     try:
+        print(sql, params)
         db.session.execute(sql, params)
         db.session.commit()
     except DatabaseError as e:
@@ -91,12 +94,11 @@ def cloud_publish():
     qos = int(request.form.get('qos'))
     client = CLOUD.get('cloud')
 
-    data, rc = str_to_dict(message)
-    if rc != 1:
-        return 'message error'
+    if not isdict(message):
+        return 'term_config error'
 
     if client and client.connected:
-        rc, mid = client.publish(topic, data, qos)
+        rc, mid = client.publish(topic, json.loads(message), qos)
         if rc == 0:
             return 'publish succeeded.'
     return 'publish error.'

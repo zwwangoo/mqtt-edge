@@ -20,12 +20,12 @@ class CloudClient(MQTTClient):
                                           keepalive=keepalive)
 
     def _on_connect(self, client, userdata, flags, rc):
-        log.info('on_connect %s' % rc)
+        log.info('云端连接Broker')
         client.subscribe('video/cloudipcmgr/register')
         client.subscribe('video/cloudipcmgr/report')
 
     def _on_message(self, client, userdata, msg):
-        log.info('cloud on_message')
+        log.info('云端接收到消息')
         payload = json.loads(msg.payload.decode())
 
         self.term_sn = payload.get('term_sn')
@@ -52,7 +52,6 @@ class CloudClient(MQTTClient):
             data['type'] = 'ban'
         else:
             term_config = json.loads(term.config)
-            print(term_config)
             now_sign = generate_md5(ordered_dict(term_config))
             if now_sign != payload.get('sign'):
                 data['type'] = 'overwrite'

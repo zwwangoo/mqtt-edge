@@ -61,11 +61,11 @@ class EdgeClient(MQTTClient):
         sql_util.close()
 
     def _on_connect(self, client, userdata, flags, rc):
-        log.info('e_edge on_connect %s' % rc)
+        log.info('edge设备连接Broker')
         client.subscribe('video/edgeipcmr/' + self.term_sn)
 
     def _on_message(self, client, userdata, msg):
-        log.info('e_edge on_message')
+        log.info('edge接受到信息')
 
         payload = json.loads(msg.payload.decode())
         cmd = payload.get('cmd')

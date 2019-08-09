@@ -67,15 +67,15 @@ def list_to_str(data):
     return '[' + ordered + ']'
 
 
-def str_to_dict(data):
+def isdict(data):
 
-    rc = 0
+    rc = False
     try:
         data = json.loads(data)
-        rc = 1
+        rc = True
     except json.decoder.JSONDecodeError as e:
         print(e)
-    return data, rc
+    return rc
 
 
 if __name__ == '__main__':
