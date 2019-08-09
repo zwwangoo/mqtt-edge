@@ -1,4 +1,3 @@
-import json
 from flask import Blueprint, request, Response
 from sqlalchemy import text
 from sqlalchemy.exc import DatabaseError
@@ -6,6 +5,7 @@ from sqlalchemy.exc import DatabaseError
 from extensions import db
 from clients.cloud_client import CloudClient
 from utils.sql_utils import fetchone
+from utils.data_utils import str_to_dict
 from logger import log
 
 cloud_bp = Blueprint('cloud', __name__, url_prefix='/cloud')
@@ -45,6 +45,10 @@ def cloud_server():
 def cloud_term_sn():
     term_sn = request.form.get('term_sn')
     term_config = request.form.get('config')
+
+    term_config, rc = str_to_dict(term_config)
+    if rc != 1:
+        return 'term_config error'
     if request.method == 'GET':
         edge = fetchone(
             text('select term_sn, config from edge where term_sn=:term_sn'),
@@ -81,16 +85,14 @@ def cloud_cmd():
 
 
 @cloud_bp.route('/publish', methods=['POST'])
-def edge_publish():
+def cloud_publish():
     topic = request.form.get('topic')
     message = request.form.get('message')
     qos = int(request.form.get('qos'))
     client = CLOUD.get('cloud')
 
-    try:
-        data = json.loads(message)
-    except json.decoder.JSONDecodeError as e:
-        print(e)
+    data, rc = str_to_dict(message)
+    if rc != 1:
         return 'message error'
 
     if client and client.connected:

@@ -1,8 +1,7 @@
-import json
 from flask import Blueprint, request
 from clients.edge_client import EdgeClient
-from utils.data_utils import get_utctime
 from utils.sql_utils import fetchone
+from utils.data_utils import str_to_dict
 
 edge_bp = Blueprint('edge', __name__, url_prefix='/edge')
 
@@ -24,6 +23,9 @@ def edge():
         password = request.form.get('password', 'password')
         term_config = request.form.get('term_config')
 
+        term_config, rc = str_to_dict(term_config)
+        if rc != 1:
+            return 'term_config error'
         if not client:
             config = fetchone(
                 '''
@@ -66,10 +68,8 @@ def edge_publish():
     qos = int(request.form.get('qos'))
     client = EDGESALL.get(term_sn)
 
-    try:
-        data = json.loads(message)
-    except json.decoder.JSONDecodeError as e:
-        print(e)
+    data, rc = str_to_dict(message)
+    if rc != 1:
         return 'message error'
 
     if client and client.connected:

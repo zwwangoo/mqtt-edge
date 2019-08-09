@@ -25,6 +25,7 @@ class EdgeClient(MQTTClient):
     def publish_register(self,
                          topic='video/cloudipcmgr/register',
                          data=None, qos=1):
+        print(self.config)
         ordered = ordered_dict(self.config)
         md5_ordered = generate_md5(ordered)
         data = {

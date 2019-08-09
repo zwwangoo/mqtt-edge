@@ -1,3 +1,4 @@
+import json
 import time
 import hashlib
 
@@ -64,6 +65,17 @@ def list_to_str(data):
         ordered += value + ', '
     ordered = ordered[:-2]
     return '[' + ordered + ']'
+
+
+def str_to_dict(data):
+
+    rc = 0
+    try:
+        data = json.loads(data)
+        rc = 1
+    except json.decoder.JSONDecodeError as e:
+        print(e)
+    return data, rc
 
 
 if __name__ == '__main__':

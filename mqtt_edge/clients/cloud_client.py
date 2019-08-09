@@ -52,6 +52,7 @@ class CloudClient(MQTTClient):
             data['type'] = 'ban'
         else:
             term_config = json.loads(term.config)
+            print(term_config)
             now_sign = generate_md5(ordered_dict(term_config))
             if now_sign != payload.get('sign'):
                 data['type'] = 'overwrite'
