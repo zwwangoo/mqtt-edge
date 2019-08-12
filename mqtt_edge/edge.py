@@ -47,6 +47,8 @@ def edge():
         if not client.connected:
             client.connect(user, password)
             client.loop_start()
+            # 启动之后，自动注册
+            client.publish_register()
         return '%s connected' % term_sn
 
 

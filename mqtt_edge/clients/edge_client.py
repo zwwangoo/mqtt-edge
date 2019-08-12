@@ -1,4 +1,5 @@
 import json
+import time
 
 from . import MQTTClient
 from utils.data_utils import generate_md5, ordered_dict, get_utctime
@@ -25,10 +26,9 @@ class EdgeClient(MQTTClient):
     def publish_register(self,
                          topic='video/cloudipcmgr/register',
                          data=None, qos=1):
-        print(self.config)
         ordered = ordered_dict(self.config)
         md5_ordered = generate_md5(ordered)
-        data = {
+        data = data or {
             'term_sn': self.term_sn,
             'sign': md5_ordered,
             'time': get_utctime()
@@ -84,6 +84,8 @@ class EdgeClient(MQTTClient):
                 log.info('注册成功')
             elif cmd_type == 'ban':
                 log.info('非登记设备')
+                time.sleep(2)
+                self.publish_register()
         elif cmd == 'rt_stream':
             if cmd_type == 'start':
                 log.info('%s cloud命令start 开始推流' % msg_time)
