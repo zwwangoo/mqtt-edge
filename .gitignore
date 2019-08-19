@@ -18,3 +18,4 @@ build
 dist
 .idea/
 mqtt_edge/sqlite.db
+/mqtt_edge/logger/log.txt.*
