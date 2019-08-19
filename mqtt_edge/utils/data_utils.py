@@ -67,6 +67,12 @@ def list_to_str(data):
     return '[' + ordered + ']'
 
 
+def encode(data):
+    if not isinstance(data, bytes):
+        data = data.encode()
+    return data
+
+
 def isdict(data):
 
     rc = False

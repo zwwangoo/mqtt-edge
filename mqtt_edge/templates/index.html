@@ -116,6 +116,30 @@
 	  $('#qos').val('1')
 	  $('#type').val('cloud')
     })
+	
+    $('#get_zmq_nodes').click(function(event){
+	  $.get('/edge/zmq/nodes', function(data){
+		  data = data.split(',')
+		  var str_1 = ''
+		  data.forEach(function(element){
+			  str_1 += '<option value="' + element + '">' + element + '</option>'
+		  })
+		  $('#from_node').html(str_1)
+		  $('#to_node').html(str_1)
+	  })
+	})
+
+	  $('#send').click(function(event){
+		  var from = $('#from_node').val()
+		  var to = $('#to_node').val()
+		  var msg = $('#msg').val()
+		  var term_sn = $('#term_sn').val()
+		  $.post('/edge/'+ term_sn +'/zmq/send', {'from': from, 'to': to, 'msg': msg},
+			  function(res){
+				  alert('ok')
+			  })
+
+	  })
 
   });
 
@@ -218,6 +242,45 @@
 			<input type='text' style='display:none;' id='type'>
 	 	    <button id="publish" class="btn btn-primary">发送</button>
 	 	  </div>
+	  </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+		  获取 zmq 节点:
+      </h3>
+    </div>
+    <div class="panel-body">
+	  <div class="form-group">
+		<button id="get_zmq_nodes" class="btn btn-primary">获取</button>
+	  </div>
+	 <div class='form-inline'>
+	   <div class="form-group">
+	     <label for="qos"> From </label>
+	     <select class="form-control" id='from_node'>
+	       <option value='1'>1</option>
+	       <option value='0'>0</option>
+	       <option value='2'>2</option>
+	     </select>
+	   </div>
+	   <div class="form-group">
+	     <label for="qos"> To </label>
+	     <select class="form-control" id='to_node'>
+	       <option value='1'>1</option>
+	       <option value='0'>0</option>
+	       <option value='2'>2</option>
+	     </select>
+	   </div>
+	   <div class="form-group">
+	     <label for="message"> 消息 </label>
+	     <input type="text" class="form-control" id="msg">
+	   </div>
+	   <div class="form-group">
+	 	<input type='text' style='display:none;' id='type'>
+	     <button id="send" class="btn btn-primary">发送</button>
+	   </div>
 	  </div>
     </div>
 </div>

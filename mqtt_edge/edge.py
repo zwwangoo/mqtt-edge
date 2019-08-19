@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request
-from clients.edge_client import EdgeClient
+from mqtt_clients.edge_client import EdgeClient
 from utils.sql_utils import fetchone
 from utils.data_utils import isdict
 
@@ -78,3 +78,31 @@ def edge_publish():
         if rc == 0:
             return 'publish succeeded.'
     return 'publish error.'
+
+
+@edge_bp.route('/zmq/nodes', methods=['GET'])
+def edge_zmq_nodes():
+    nodes = []
+    for term_sn in EDGESALL:
+        client = EDGESALL.get(term_sn)
+
+        nodes.append(client.evmgr.ident)
+        for node in client.peers.keys():
+            nodes.append(node)
+    return ','.join(nodes)
+
+
+@edge_bp.route('/<term_sn>/zmq/send', methods=['POST'])
+def edge_zmq_send(term_sn):
+    from_node = request.form.get('from')
+    to_node = request.form.get('to')
+    msg = request.form.get('msg')
+    client = EDGESALL.get(term_sn)
+    fnode = client.peers.get(from_node)
+    if not fnode:
+        fnode = client.evmgr
+    if to_node == client.evmgr.ident:
+        fnode.send(msg)
+    else:
+        fnode.send(msg, to_node)
+    return 'ok'

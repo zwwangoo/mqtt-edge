@@ -4,7 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import DatabaseError
 
 from extensions import db
-from clients.cloud_client import CloudClient
+from mqtt_clients.cloud_client import CloudClient
 from utils.sql_utils import fetchone
 from utils.data_utils import isdict
 from logger import log
